@@ -1,0 +1,144 @@
+**package.json**
+```
+{
+  "name": "frontend",
+  "version": "1.0.0",
+  "dependencies": {
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "mantine": "^4.0.0",
+    "vite": "^2.9.13",
+    "typescript": "^4.3.5"
+  },
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "start": "vite preview"
+  }
+}
+```
+
+**vite.config.js**
+```
+import { defineConfig } from 'vite';
+import reactRefresh from '@vitejs/plugin-react-refresh';
+
+export default defineConfig({
+  plugins: [reactRefresh()],
+  resolve: {
+    alias: {
+      '@': '/src'
+    }
+  },
+  build: {
+    outDir: 'build'
+  }
+});
+```
+
+**index.html**
+```
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Frontend Application</title>
+</head>
+<body>
+  <div id="root"></div>
+  <script type="module" src="src/main.tsx"></script>
+</body>
+</html>
+```
+
+**src/main.tsx**
+```
+import React from 'react';
+import ReactDOM from 'react-dom';
+import App from './App';
+
+ReactDOM.render(
+  <React.StrictMode>
+    <App />
+  </React.StrictMode>,
+  document.getElementById('root')
+);
+```
+
+**src/App.tsx**
+```
+import React from 'react';
+import ExampleComponent from './components/ExampleComponent';
+
+const App = () => {
+  return (
+    <div>
+      <ExampleComponent title="Hello from example component!" />
+    </div>
+  );
+};
+
+export default App;
+```
+
+**src/components/ExampleComponent.tsx**
+```
+import { Container, Title } from '@mantine/core';
+
+interface Props {
+  title: string;
+}
+
+const ExampleComponent: React.FC<Props> = ({ title }) => {
+  return (
+    <Container>
+      <Title>{title}</Title>
+    </Container>
+  );
+};
+
+export default ExampleComponent;
+```
+
+**src/hooks/useExampleHook.ts**
+```
+import { useState, useCallback } from 'react';
+
+const useExampleHook = () => {
+  const [count, setCount] = useState(0);
+
+  const increment = useCallback(() => {
+    setCount((prevCount) => prevCount + 1);
+  }, []);
+
+  return { count, increment };
+};
+
+export default useExampleHook;
+```
+
+**src/utils/exampleUtil.ts**
+```
+const exampleUtil = () => {
+  console.log('Hello from example util!');
+};
+
+export default exampleUtil;
+```
+
+**tsconfig.json**
+```
+{
+  "compilerOptions": {
+    "outDir": "build",
+    "sourceMap": true,
+    "noImplicitAny": true,
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "allowSyntheticDefaultImports": true,
+    "jsx": "react-jsx"
+  }
+}
+```
+I've created an `App.tsx` component to simplify the application structure. The `useExampleHook` and `exampleUtil` are now easily importable and usable in other components.
