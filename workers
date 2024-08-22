@@ -1,0 +1,64 @@
+Here is a suggested better implementation for the `workers` directory:
+
+requirements.txt:
+celery[librabbitmq]
+
+worker1/__init__.py:
+# empty file
+
+worker1/config.py:
+RABBITMQ_URI = 'amqp://guest:guest@localhost:5672//'
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+
+worker1/main.py:
+from celery import Celery
+from .config import CELERY_BROKER_URL
+
+app = Celery('worker1', broker=CELERY_BROKER_URL)
+
+worker1/tasks.py:
+from .main import app
+
+@app.task
+def add(x, y):
+    return x + y
+
+@app.task
+def task1():
+    # task 1 implementation
+    pass
+
+@app.task
+def task2():
+    # task 2 implementation
+    pass
+
+worker2/__init__.py:
+# empty file
+
+worker2/config.py:
+RABBITMQ_URI = 'amqp://guest:guest@localhost:5672//'
+CELERY_BROKER_URL = 'amqp://guest:guest@localhost:5672//'
+
+worker2/main.py:
+from celery import Celery
+from .config import CELERY_BROKER_URL
+
+app = Celery('worker2', broker=CELERY_BROKER_URL)
+
+worker2/tasks.py:
+from .main import app
+
+@app.task
+def multiply(x, y):
+    return x * y
+
+@app.task
+def task3():
+    # task 3 implementation
+    pass
+
+@app.task
+def task4():
+    # task 4 implementation
+    pass
