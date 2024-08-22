@@ -1,0 +1,82 @@
+# Node ignore patterns
+node_modules/
+npm-debug.log
+yarn-error.log
+pnpm-error.log
+yarn.lock
+pnpm-lock.yaml
+package-lock.json
+next/
+
+# Python ignore patterns
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.egg-info/
+*.egg
+
+# IDE and OS ignore patterns
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+.vs
+.vagrant
+env/
+
+# Log files
+*.log
+logs/
+log.txt
+
+# Temporary files
+*.tmp
+*.temp
+*.old
+*.orig
+*.rej
+*.swp
+*.swo
+*.svn/
+*.svn-base
+
+# Coverage files
+coverage/
+htmlcov/
+
+# Cache files
+.cache/
+.cache/*
+*.cache
+Cache/
+cache/
+
+# Test files
+*.test
+tests/
+test/
+pytest_cache/
+
+# Profiling files
+.prof
+profile/
+profiles/
+
+# Debug files
+.debug
+debug/
+Debug/
+
+# Other
+venv/
+*.bak
+*.gz
+*.xz
+*.zip
+*.7z
+*.rar
+*.exe
+*.dll
+*.so
+*.dylib
